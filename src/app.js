@@ -1,4 +1,4 @@
-import './css/stylus.styl';
-import fileExample from './js/file.js';
+import './css/stylus.styl'
+import fileExample from './js/file.js'
 
 fileExample()

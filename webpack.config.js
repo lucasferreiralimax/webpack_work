@@ -22,6 +22,20 @@ module.exports = {
         use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader']
       },
       {
+        test: /\.pug$/,
+        use: ['html-loader', 'pug-html-loader']
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+            loader: "babel-loader",
+            options: {
+              presets: ['@babel/preset-env']
+            }
+        }
+      },
+      {
         test: /\.(png|svg|jpg|gif)$/,
         use: {
           loader: 'file-loader',
@@ -30,17 +44,6 @@ module.exports = {
             name: '[name].[ext]',
           }
         }
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-            loader: "babel-loader"
-        }
-      },
-      {
-        test: /\.pug$/,
-        use: ['html-loader?attrs=false', 'pug-html-loader']
       }
     ]
   },
@@ -49,11 +52,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       hash: true,
       template: './src/index.pug',
+      favicon: './src/assets/favicon.ico',
       filename: 'index.html'
     }),
     new HtmlWebpackPlugin({
       hash: true,
       template: './src/page/exemplo.pug',
+      favicon: './src/assets/favicon.ico',
       filename: 'page/exemplo.html'
     }),
     new MiniCssExtractPlugin({

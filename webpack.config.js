@@ -5,12 +5,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  devServer: {
-    contentBase: './dist'
-  },
   entry: {
     app: './src/app.js'
   },
+  devServer: {
+    contentBase: './dist'
+  },
+  devtool: 'source-map',
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
@@ -26,10 +27,16 @@ module.exports = {
         use: ['html-loader', 'pug-html-loader']
       },
       {
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader', 'eslint-loader']
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env']
             }
@@ -62,7 +69,7 @@ module.exports = {
       filename: 'page/exemplo.html'
     }),
     new MiniCssExtractPlugin({
-      filename: "css/[name].css"
+      filename: 'css/[name].css'
     })
   ]
 }

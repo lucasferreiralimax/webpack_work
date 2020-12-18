@@ -1,6 +1,6 @@
 {
   "name": "webpack_work",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Um projeto para iniciar com webpack em seu workflow usando stylus.js, pug.js, babel e webpack-dev-server nos arquivos.",
   "repository": {
     "type": "git",

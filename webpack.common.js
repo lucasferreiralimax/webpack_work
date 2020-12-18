@@ -9,13 +9,14 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   module: {
     rules: [
       {
         test: /\.styl$/,
-        use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader']
+        use: ['style-loader', 'css-loader', 'stylus-loader']
       },
       {
         test: /\.pug$/,

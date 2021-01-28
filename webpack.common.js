@@ -16,7 +16,19 @@ module.exports = {
     rules: [
       {
         test: /\.styl$/,
-        use: ['style-loader', 'css-loader', 'stylus-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: ["postcss-preset-env", "autoprefixer"]
+              },
+            },
+          },
+          'stylus-loader'
+        ]
       },
       {
         test: /\.pug$/,

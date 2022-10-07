@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -12,6 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
+  plugins: [new ESLintPlugin()],
   module: {
     rules: [
       {
@@ -27,7 +29,7 @@ module.exports = {
               },
             },
           },
-          'stylus-loader'
+          'stylus-loader',          
         ]
       },
       {
@@ -38,7 +40,7 @@ module.exports = {
         enforce: 'pre',
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader']
+        use: ['babel-loader'],
       },
       {
         test: /\.js$/,
